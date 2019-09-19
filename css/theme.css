@@ -98,6 +98,27 @@ label,
     }
 }
 
+.latest-product-1 {
+    background-image:url(../assets/images/hanuman.png);
+}
+
+.latest-product-1:hover {
+    background-image:url(../assets/images/hanuman-details.png);
+    transition: .3s background ease;
+
+}
+
+.latest-product-2 {
+    background-image:url(../assets/images/buddha.png);
+}
+
+.latest-product-2:hover {
+    background-image:url(../assets/images/buddha-details.png);
+    transition: .3s background ease;
+
+}
+
+
 /*  
     ----------------------------------
     2. Page loader
