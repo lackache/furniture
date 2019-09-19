@@ -7,6 +7,60 @@
 
     // Global menu variables
 
+    function createCookie(key, value) {
+        let cookie = escape(key) + "=" + escape(value) + ";";
+        document.cookie = cookie;
+    }
+    function readCookie(name) {
+        let key = name + "=";
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf(key) === 0) {
+                return cookie.substring(key.length, cookie.length);
+            }
+        }
+        return null;
+    }
+    var displayed = false;
+
+    $(document).ready(function () {
+       
+
+        var isDownloaded = readCookie('isDownload');
+
+        var t;
+        window.onload = resetTimer;
+        window.onmousemove = resetTimer;
+        window.onmousedown = resetTimer;  // catches touchscreen presses as well      
+        window.ontouchstart = resetTimer; // catches touchscreen swipes as well 
+        window.onclick = resetTimer;      // catches touchpad clicks as well
+        window.onkeypress = resetTimer;   
+        window.addEventListener('scroll', resetTimer, true); // improved; see comments
+    
+        function yourFunction() {
+            if(isDownloaded !== 'download' && !displayed) {
+                $('#exampleModalCenter').modal('show');
+            }
+        }
+    
+        function resetTimer() {
+            clearTimeout(t);
+            if(isDownloaded !== 'download') {
+                t = setTimeout(yourFunction, 10000);  // time is in milliseconds
+            }
+        }
+    });
+
+    $("#download").click(function(){
+        $('#exampleModalCenter').modal('hide');
+        createCookie("isDownload", "download");
+        displayed = true;
+    });
+
     var objSearch = $('.search-wrapper'),
         objLogin = $('.login-wrapper'),
         objCart = $('.cart-wrapper'),
